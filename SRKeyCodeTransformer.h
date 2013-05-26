@@ -16,6 +16,22 @@
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
 
+#ifndef ShortcutRecorder_CocoaPolyfills
+#define ShortcutRecorder_CocoaPolyfills
+
+@interface NSDictionary(subscripts)
+- (id)objectForKeyedSubscript:(id)key;
+@end
+
+@interface NSMutableDictionary(subscripts)
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
+@end
+
+#ifndef NS_ENUM
+#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
+#endif
+
+#endif
 
 /*!
     @brief  Transforms key code into unicode character or plain string.
